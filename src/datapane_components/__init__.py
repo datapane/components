@@ -1,3 +1,3 @@
 """Root package for datapane components library"""
 
-from .utils import Divider, Section  # noqa: F401
+from .utils import divider, section  # noqa: F401
