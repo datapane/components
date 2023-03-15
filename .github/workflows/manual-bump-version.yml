@@ -1,0 +1,31 @@
+name: .bump-version
+
+on:
+  workflow_dispatch:
+
+jobs:
+  main:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_VERSION_BUMP_PAT }}
+
+      - name: Configure git user
+        run: |
+          git config --local user.email "accounts+github-ci-bot@datapane.com"
+          git config --local user.name "datapane-ci-bot"
+
+      - uses: actions/setup-python@v4
+        id: setup-python
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          pip install 'poetry~=1.4.0'
+          poetry install
+
+      - name: Bump version
+        run:
+          poetry run poe git-bump-version
+          git push --tags
