@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "datapane-components"
-version = "2023.3.15"
+version = "2023.3.14"
 description = "Reusable Datapane components and sample reports and apps"
 authors = ["Datapane Team <dev@datapane.com>"]
 license = "Apache 2.0"
@@ -83,6 +83,7 @@ target-version = "py38"
 
 [tool.poe.tasks]
 bump-version = { "script" = "ci.bump_version:main" }
+git-bump-version = { "script" = "ci.bump_version:main(git=True)" }
 ruff-check = "ruff check . --diff"
 black-check = "black . --check --diff"
 ruff-fix = "ruff check . --fix --show-fixes"
