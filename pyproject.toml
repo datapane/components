@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "datapane-components"
-version = "2023.3.14"
+version = "2023.3.15"
 description = "Reusable Datapane components and sample reports and apps"
 authors = ["Datapane Team <dev@datapane.com>"]
 license = "Apache 2.0"
