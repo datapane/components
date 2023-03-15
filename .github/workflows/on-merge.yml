@@ -8,3 +8,8 @@ on:
 jobs:
   test:
     uses: ./.github/workflows/wf-test.yml
+
+  release:
+    uses: ./.github/workflows/wf-release.yml
+    with:
+      release-pypi: false
