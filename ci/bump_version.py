@@ -16,9 +16,9 @@ def _get_new_version():
 def _commit_and_tag(new_version: str):
     prefixed_version = f"v{new_version}"
 
-    sh.git.add("pyproject.toml")
-    sh.git.commit("-m", f"Release {prefixed_version}")
-    sh.git.tag("-a", f"{prefixed_version}", "-m", f"Release {prefixed_version}")
+    sh.git.add("pyproject.toml", _fg=True)
+    sh.git.commit("-m", f"Release {prefixed_version}", _fg=True)
+    sh.git.tag("-a", f"{prefixed_version}", "-m", f"Release {prefixed_version}", _fg=True)
 
 
 def main(git: bool = False):
