@@ -8,3 +8,7 @@ jobs:
   test:
     if: github.event.pull_request.draft == false
     uses: ./.github/workflows/wf-test.yml
+
+  lint:
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/wf-lint.yml

@@ -56,7 +56,8 @@ poethepoet = "^0.18.1"
 
 # sh pinned to an older version, due to poetry incorrectly trying to make a single lockfile.
 sh = "^1.14.3"
-
+black = "^23.1.0"
+ruff = "^0.0.256"
 
 [build-system]
 requires = ["poetry-core"]
@@ -64,7 +65,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.black]
 line-length = 120
-target-version = ['py310']
+target-version = ['py38']
 # include = '\.pyi?$'
 
 [tool.ruff]
@@ -78,7 +79,13 @@ ignore = ["E501"]
 #unfixable = []
 
 line-length = 120
-target-version = "py310"
+target-version = "py38"
 
 [tool.poe.tasks]
 bump-version = { "script" = "ci.bump_version:main" }
+ruff-check = "ruff check . --diff"
+black-check = "black . --check --diff"
+ruff-fix = "ruff check . --fix --show-fixes"
+black-fix = "black ."
+lint = { sequence = ["ruff-check", "black-check"] }
+fixlint = { sequence = ["ruff-fix", "black-fix"] }
