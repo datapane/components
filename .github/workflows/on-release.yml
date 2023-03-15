@@ -1,4 +1,4 @@
-name: PR
+name: On Release
 
 on:
   push:
@@ -8,3 +8,6 @@ on:
 jobs:
   test:
     uses: ./.github/workflows/wf-test.yml
+
+  release:
+    uses: ./.github/workflows/wf-release.yml

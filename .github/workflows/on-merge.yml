@@ -1,4 +1,4 @@
-name: PR
+name: On Merge
 
 on:
   push:

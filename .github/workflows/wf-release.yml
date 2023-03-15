@@ -1,0 +1,44 @@
+name: Release
+
+on:
+  workflow_call:
+    inputs:
+      release-pypi:
+        description: 'Release to PyPI?'
+        default: false
+        type: boolean
+    secrets:
+      POETRY_PYPI_TOKEN_PYPI:
+        description: 'PyPI token'
+        required: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  main:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          pip install 'poetry~=1.4.0'
+
+      - name: Build
+        run: poetry build -vv
+
+      - name: Publish GH Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dp-components
+          path: dist/*.whl
+
+      - name: Publish PyPI
+        if: ${{ inputs.release-pypi == true }}
+        run: poetry publish -vv
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.POETRY_PYPI_TOKEN_PYPI }}
