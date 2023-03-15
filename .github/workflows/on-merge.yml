@@ -1,0 +1,10 @@
+name: PR
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    uses: ./.github/workflows/wf-test.yml

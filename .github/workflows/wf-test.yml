@@ -1,0 +1,27 @@
+name: Test
+
+on:
+  workflow_call:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  main:
+    # TODO: all platforms
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: |
+          pip install 'poetry~=1.4.0'
+          poetry install
+
+      - name: Test
+        run: |
+          poetry run pytest

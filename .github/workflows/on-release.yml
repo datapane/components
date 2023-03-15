@@ -1,0 +1,10 @@
+name: PR
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  test:
+    uses: ./.github/workflows/wf-test.yml
