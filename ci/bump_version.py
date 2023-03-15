@@ -10,7 +10,7 @@ def _get_new_version():
     Does not include leading zeros
     """
     today = date.today()
-    return f'{today.year}.{today.month}.{today.day}'
+    return f"{today.year}.{today.month}.{today.day}"
 
 
 def main():
@@ -18,5 +18,5 @@ def main():
     sh.poetry.version("-vv", "--", new_version, _fg=True)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
