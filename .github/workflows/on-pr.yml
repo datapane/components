@@ -1,0 +1,14 @@
+name: PR
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  test:
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/wf-test.yml
+
+  lint:
+    if: github.event.pull_request.draft == false
+    uses: ./.github/workflows/wf-lint.yml

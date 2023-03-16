@@ -7,6 +7,7 @@ import datapane as dp
 print(dp.__version__)
 print(dp.__rev__)
 
+
 def divider() -> dp.Text:
     """
     Create a divider within your View
@@ -16,7 +17,7 @@ def divider() -> dp.Text:
     return dp.Text("---")
 
 
-def section(new_heading: str = "") -> t.List[dp.Block]:
+def section(new_heading: str = "") -> t.List[dp.Blocks]:
     """
     Create a Section dividier within your View
 

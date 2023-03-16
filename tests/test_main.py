@@ -1,10 +1,7 @@
 # Trivial tests to ensure basics working for now
-import typing as t
 
 import pytest
 import datapane as dp
-
-import datapane_components as dc
 
 
 def _check_view(v) -> None:
@@ -33,5 +30,3 @@ def test_datasets():
 
     with pytest.raises(AttributeError):
         df = datasets.load_dataset(dict(upload=None, dataset="airports1"))
-
-
