@@ -27,6 +27,9 @@ jobs:
           poetry install
 
       - name: Bump version
-        run:
+        run: |
           poetry run poe git-bump-version
-          git push --tags
+
+          new_version="$(poetry version -s)"
+          git push origin main
+          git push origin "v${new_version}"
