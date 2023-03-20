@@ -11,6 +11,7 @@ jobs:
 
   release:
     uses: ./.github/workflows/wf-release.yml
+    needs: [test]
     with:
       release-pypi: true
     secrets:

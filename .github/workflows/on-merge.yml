@@ -13,6 +13,7 @@ jobs:
     uses: ./.github/workflows/wf-lint.yml
 
   release:
+    needs: [test]
     uses: ./.github/workflows/wf-release.yml
     with:
       release-pypi: false
