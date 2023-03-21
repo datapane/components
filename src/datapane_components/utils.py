@@ -1,11 +1,8 @@
+import threading
 import typing as t
 from tempfile import mktemp
 
 import datapane as dp
-
-
-print(dp.__version__)
-print(dp.__rev__)
 
 
 def divider() -> dp.Text:
@@ -45,3 +42,21 @@ def attach_report(blocks, name: str = "") -> dp.Attachment:
     dp.save_report(blocks, f_name)
 
     return dp.Attachment(file=f_name, filename=name or None)
+
+
+T = t.TypeVar("T")
+
+
+class Box(t.Generic[T]):
+    """Thread-safe single element container, for storing Views (and object objects) globally"""
+    def __init__(self, default: T):
+        self._x: T = default
+        self._lock = threading.Lock()
+
+    def get(self) -> T:
+        with self._lock:
+            return self._x
+
+    def set(self, x: T) -> None:
+        with self._lock:
+            self._x = x
