@@ -30,3 +30,11 @@ def test_datasets():
 
     with pytest.raises(AttributeError):
         df = datasets.load_dataset(dict(upload=None, dataset="airports1"))
+
+
+def test_utils():
+    # just test all the importing works
+    import datapane_components as dc
+
+    _check_view(dc.divider())
+    _check_view(dc.section(""))
