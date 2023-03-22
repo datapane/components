@@ -49,6 +49,7 @@ T = t.TypeVar("T")
 
 class Box(t.Generic[T]):
     """Thread-safe single element container, for storing Views (and object objects) globally"""
+
     def __init__(self, default: T):
         self._x: T = default
         self._lock = threading.Lock()
